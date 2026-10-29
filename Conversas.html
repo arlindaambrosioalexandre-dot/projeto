@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-mz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lfentregadora.Lda - Conversas</title>
+  <link rel="stylesheet" href="Indice.css" />
+  <link rel="stylesheet" href="Conversas.css" />
+  <style>
+    /* Painel de ficheiros melhorado */
+    .file-panel.open{display:flex !important}
+    .file-panel{
+      position:fixed; bottom:70px; left:10px; 
+      background:#fff; border-radius:14px; box-shadow:0 8px 25px rgba(0,0,0,0.3);
+      flex-direction:column; padding:8px; gap:4px; z-index:200; display:none; min-width:220px;
+    }
+    .file-panel label, .file-panel button{
+      padding:12px 14px; border:none; background:#f5f5f5; border-radius:10px;
+      text-align:left; cursor:pointer; font-size:14px; font-weight:500;
+    }
+    .file-panel label:hover, .file-panel button:hover{background:#e3f0ff}
+    #ctx{position:fixed; background:white; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); padding:6px; z-index:300; display:none; min-width:190px}
+    #ctx button{display:block; width:100%; padding:10px 12px; border:none; background:none; text-align:left; cursor:pointer; border-radius:8px; font-size:14px}
+    #ctx button:hover{background:#f0f0f0}
+    .bubble img, .bubble video{max-width:240px; border-radius:10px; display:block; margin-bottom:5px}
+    #contactModal{position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:400; display:none; align-items:center; justify-content:center}
+    #contactModal.open{display:flex}
+    .modalBox{background:white; width:90%; max-width:350px; border-radius:16px; padding:16px}
+    .modalBox input{width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; margin:6px 0}
+    .tela-conversas {
+  padding: 28px 40px 40px;
+}
+.topo-marca{
+  text-align: justify;
+}
+.logo-letras{
+  text-align: left;
+  align-items: left;
+}
+#botao{
+  border: 2px solid rgba(0, 157, 255, 0.845);
+  margin-left: 1100px;
+  border-radius: 20px;
+  width: 100px;
+  height: 30px;
+  background-color: rgb(127, 255, 244);
+ margin-block: 30px;
+}
+h1{
+  text-align: justify;
+}
+
+nav{
+  display: flex;
+
+
+}
+#botao a{
+   
+ text-decoration: none;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Times New Roman', serif}
+body,html{height:100%;overflow:hidden}
+.page{
+  width:100%;height:100vh;
+  background:url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg) no-repeat center center;
+  background-size:cover;
+  display:flex;flex-direction:column;
+  position:relative;
+          background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;
+}
+.top-bar{
+  background:rgba(255,255,255,0.28);
+  backdrop-filter:blur(2px);
+  padding:10px 8px;
+  color:#fff;
+  font-size:22px;
+  font-weight:bold;
+  display:flex;justify-content:space-between;
+  text-shadow:0 1px 2px rgba(0,0,0,0.7);
+}
+.top-bar button{
+  background:#5bb5c0; border:none; color:#fff; padding:6px 18px; border-radius:20px; cursor:pointer;
+}
+.center-title{
+  text-align:center; margin-top:18px; color:#fff;
+  text-shadow:0 2px 4px rgba(0,0,0,0.8);
+}
+.center-title h2{font-size:26px; background:rgba(255,255,255,0.18); display:inline-block; padding:6px 18px; border-radius:8px}
+#pinned{position:sticky; top:0; background:rgba(255,193,7,0.92); padding:8px 12px; font-size:13px; display:none; z-index:5; font-family:system-ui}
+.chat-area{
+  flex:1; overflow-y:auto; padding:20px 0 85px 0;
+}
+.msg-block{margin:18px 0; position:relative}
+.name{color:#fff; font-size:17px; padding:0 6px; text-shadow:0 1px 3px #000}
+.name.right{text-align:right}
+.bubble{
+  background:rgba(255,255,255,0.26);
+  backdrop-filter:blur(3px);
+  color:#e9e9e9;
+  padding:8px 14px;
+  border-radius:12px;
+  display:inline-block;
+  max-width:82%;
+  font-size:19px;
+  margin:4px 6px;
+  cursor:pointer;
+  word-break:break-word;
+  font-family:system-ui;
+}
+.bubble.right{margin-left:auto; display:block; margin-right:6px}
+.bubble img, .bubble video{max-width:100%; border-radius:8px; display:block; margin-bottom:5px}
+.bubble.me{background:rgba(0,150,136,0.48)}
+#ctx{
+  position:fixed; background:#202c33; color:#fff; border-radius:10px; padding:6px 0; display:none; z-index:99; min-width:180px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.5); font-family:system-ui;
+}
+#ctx button{display:block; width:100%; text-align:left; background:none; border:none; color:#fff; padding:10px 14px; cursor:pointer; font-size:14px}
+#ctx button:hover{background:#2a3942}
+.bottom{
+  background:rgba(32,44,51,0.95);
+  padding:8px;
+  display:flex; flex-direction:column; gap:6px;
+  position:fixed; bottom:0; left:0; right:0;
+}
+.input-row{display:flex; align-items:flex-end; gap:8px}
+.icon-btn{width:38px;height:38px; background:#2a3942; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#8696a0; font-size:20px; border:none}
+.input-wrap{flex:1; background:#2a3942; border-radius:22px; display:flex; align-items:center; padding:6px 12px}
+.input-wrap textarea{flex:1; background:transparent; border:none; color:#fff; outline:none; resize:none; font-size:15px; max-height:80px; font-family:system-ui}
+.send-btn{width:46px;height:46px; background:#00a884; border-radius:50%; border:none; color:#fff; font-size:20px; cursor:pointer}
+.emoji-panel{display:none; background:#202c33; padding:10px; grid-template-columns:repeat(8,1fr); gap:6px; max-height:140px; overflow-y:auto}
+.emoji-panel.open{display:grid}
+.emoji{font-size:22px; cursor:pointer; text-align:center; padding:4px}
+.file-panel{display:none; background:#202c33; padding:10px; gap:10px; font-family:system-ui}
+.file-panel.open{display:flex}
+.file-panel label{background:#2a3942; padding:10px 14px; border-radius:20px; color:#fff; cursor:pointer; font-size:13px}
+body{font-family:Arial; background:#f5f5f7; margin:0; padding:15px}
+.box{max-width:480px; margin:0 auto; background:white; border-radius:16px; padding:18px; box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.btn-upload{width:100%; padding:14px; border:2px dashed #1f7dd8; border-radius:12px; background:#f0f7ff; color:#1f7dd8; font-weight:bold; cursor:pointer; text-align:center; display:block}
+input[type=file]{display:none}
+.preview{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:15px}
+.item{position:relative; border-radius:12px; overflow:hidden; background:#eee; height:140px}
+.item img,.item video{width:100%; height:100%; object-fit:cover}
+.item .del{position:absolute; top:5px; right:5px; background:#ff3b30; color:white; border:none; border-radius:50%; width:26px; height:26px; cursor:pointer}
+.progress{height:6px; background:#e0e0e0; border-radius:10px; margin-top:12px; overflow:hidden; display:none}
+.bar{height:100%; width:0%; background:#1f7dd8; transition:width 0.3s}
+.btn-enviar{width:100%; background:#1f7dd8; color:white; border:none; padding:13px; border-radius:10px; font-weight:bold; margin-top:12px; cursor:pointer}
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="top-bar"><span>LFentregadora.Lda</span><button onclick="history.back()">Voltar</button></div>
+  <div class="center-title"><h2>Conversas</h2></div>
+  <div id="pinned">📌 <span id="pinnedText"></span> <button onclick="unpin()" style="float:right;background:none;border:none;color:#000;font-weight:bold;cursor:pointer">✕</button></div>
+  
+  <div class="chat-area" id="chat">
+    <div class="msg-block">
+      <div class="name">Entregadora</div>
+      <div class="bubble" onclick="openCtx(event,this)">Bom dia, caros clientes, hoje venho apresentar o novo produto que a Shein lançou</div>
+    </div>
+    <div class="msg-block">
+      <div class="name right">Cliente Maria:</div>
+      <div class="bubble right" onclick="openCtx(event,this)">Bom dia fornecedora, ja estou anciosa para ver o produto</div>
+    </div>
+  </div>
+
+  <div id="ctx">
+    <button onclick="copyMsg()">📋 Copiar</button>
+    <button onclick="editMsg()">✏️ Editar</button>
+    <button onclick="forwardMsg()">↗️ Reencaminhar</button>
+    <button onclick="resendMsg()">🔁 Reenviar</button>
+    <button onclick="pinMsg()">📌 Fixar</button>
+    <button onclick="saveMsg()">💾 Guardar / Baixar</button>
+    <button onclick="deleteMsg()" style="color:#f15c6d">🗑️ Apagar</button>
+  </div>
+
+  <div class="emoji-panel" id="emojiPanel"></div>
+  
+  <div class="file-panel" id="filePanel">
+    <label>📷 Foto/Vídeo<input type="file" id="fotoInput" accept="image/*,video/*" hidden multiple></label>
+    <label>📄 Documento<input type="file" id="docInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip" hidden multiple></label>
+    <button onclick="openContact()">👤 Contacto</button>
+    <button onclick="openCamera()">📸 Câmara</button>
+  </div>
+
+  <div class="bottom">
+    <div class="input-row">
+      <button class="icon-btn" id="emojiBtn">😊</button>
+      <button class="icon-btn" id="attachBtn">📎</button>
+      <div class="input-wrap"><textarea id="msgInput" rows="1" placeholder="Escreva uma mensagem"></textarea></div>
+      <button class="send-btn" id="sendBtn">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CONTACTO -->
+<div id="contactModal">
+  <div class="modalBox">
+    <h3 style="margin:0 0 10px">Enviar Contacto</h3>
+    <input id="cNome" placeholder="Nome (ex: Cliente Ana)">
+    <input id="cNumero" placeholder="Número (ex: 84...)">
+    <div style="display:flex; gap:8px; margin-top:10px">
+      <button onclick="closeContact()" style="flex:1; padding:10px; background:#eee; border:none; border-radius:8px">Cancelar</button>
+      <button onclick="sendContact()" style="flex:1; padding:10px; background:#1f7dd8; color:white; border:none; border-radius:8px">Enviar</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+
+<script>
+let currentBubble=null
+const chat=document.getElementById('chat')
+const input=document.getElementById('msgInput')
+const ctx=document.getElementById('ctx')
+const emojiPanel=document.getElementById('emojiPanel')
+const filePanel=document.getElementById('filePanel')
+const emojis=["😀","😂","❤️","🔥","🙏","😍","😅","😎","👍","👏","✅","📦","🚚","💰","✨","🥰","😭","👀","💪","🙌","🤝","💯"]
+emojiPanel.innerHTML=emojis.map(e=>`<div class=emoji>${e}</div>`).join('')
+document.querySelectorAll('.emoji').forEach(el=>el.onclick=()=>{input.value+=el.textContent; input.focus()})
+document.getElementById('emojiBtn').onclick=()=>{emojiPanel.classList.toggle('open'); filePanel.classList.remove('open')}
+document.getElementById('attachBtn').onclick=()=>{filePanel.classList.toggle('open'); emojiPanel.classList.remove('open')}
+
+function openCtx(e,bubble){e.stopPropagation(); currentBubble=bubble; ctx.style.display='block'; 
+  ctx.style.left=Math.min(e.clientX, window.innerWidth-200)+'px'; 
+  ctx.style.top=Math.max(10, e.clientY-180)+'px';}
+document.addEventListener('click',()=>ctx.style.display='none')
+
+function addMessage(html, type='text', url=''){
+  let block=document.createElement('div')
+  block.className='msg-block'
+  block.style.display='flex'; block.style.flexDirection='column'; block.style.alignItems='flex-end'; block.style.margin='6px 0'
+  block.innerHTML=`<div class="name right">Você:</div><div class="bubble right" onclick="openCtx(event,this)" data-type="${type}" data-url="${url}">${html}</div>`
+  chat.appendChild(block)
+  chat.scrollTop=chat.scrollHeight
+  // guarda
+  let hist=JSON.parse(localStorage.getItem('chatLF')||'[]')
+  hist.push({html,type,url, data:Date.now()})
+  localStorage.setItem('chatLF', JSON.stringify(hist))
+}
+
+// FUNÇÕES DO MENU
+function copyMsg(){if(currentBubble){navigator.clipboard.writeText(currentBubble.innerText); alert('Copiado ✓'); ctx.style.display='none'}}
+function deleteMsg(){if(currentBubble){currentBubble.parentElement.remove(); ctx.style.display='none'}}
+function pinMsg(){if(currentBubble){document.getElementById('pinned').style.display='block'; document.getElementById('pinnedText').textContent=currentBubble.innerText.substring(0,60); ctx.style.display='none'}}
+function unpin(){document.getElementById('pinned').style.display='none'}
+function forwardMsg(){let para=prompt('Reencaminhar para quem?'); if(para && currentBubble){addMessage(`↗️ Reencaminhada para ${para}<br>`+currentBubble.innerHTML); ctx.style.display='none'}}
+function resendMsg(){if(currentBubble){addMessage(currentBubble.innerHTML, currentBubble.dataset.type, currentBubble.dataset.url); ctx.style.display='none'}}
+function editMsg(){if(currentBubble){let novo=prompt('Editar mensagem:', currentBubble.innerText); if(novo!==null){currentBubble.innerHTML=novo}; ctx.style.display='none'}}
+function saveMsg(){
+  if(!currentBubble) return
+  let type=currentBubble.dataset.type
+  let url=currentBubble.dataset.url
+  if(url){ // foto/video/doc
+    let a=document.createElement('a'); a.href=url; a.download='LF_'+Date.now(); a.click()
+  }else{
+    let blob=new Blob([currentBubble.innerText],{type:'text/plain'})
+    let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='mensagem.txt'; a.click()
+  }
+  ctx.style.display='none'
+  alert('Guardado ✓')
+}
+
+// ENVIAR TEXTO
+document.getElementById('sendBtn').onclick=()=>{
+  if(!input.value.trim()) return
+  addMessage(input.value)
+  input.value=''
+  emojiPanel.classList.remove('open')
+}
+input.addEventListener('keypress', e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); document.getElementById('sendBtn').click() } })
+
+// FOTO / VIDEO
+document.getElementById('fotoInput').addEventListener('change', e=>{
+  Array.from(e.target.files).forEach(file=>{
+    let url=URL.createObjectURL(file)
+    if(file.type.startsWith('video')){
+      addMessage(`<video src="${url}" controls></video><br>${file.name}`, 'video', url)
+    }else{
+      addMessage(`<img src="${url}"><br>${file.name}`, 'image', url)
+    }
+  })
+  filePanel.classList.remove('open'); e.target.value=''
+})
+
+// DOCUMENTO
+document.getElementById('docInput').addEventListener('change', e=>{
+  Array.from(e.target.files).forEach(file=>{
+    let url=URL.createObjectURL(file)
+    addMessage(`📄 <a href="${url}" download="${file.name}" style="color:#1f7dd8; font-weight:bold">${file.name}</a><br><small>${(file.size/1024).toFixed(0)} KB - Clique para baixar</small>`, 'doc', url)
+  })
+  filePanel.classList.remove('open'); e.target.value=''
+})
+
+// CONTACTO
+function openContact(){filePanel.classList.remove('open'); document.getElementById('contactModal').classList.add('open')}
+function closeContact(){document.getElementById('contactModal').classList.remove('open')}
+function sendContact(){
+  let nome=document.getElementById('cNome').value
+  let num=document.getElementById('cNumero').value
+  if(!nome||!num){alert('Preencha nome e número'); return}
+  addMessage(`👤 <b>${nome}</b><br>📞 ${num}<br><a href="tel:${num}" style="color:#1f7dd8">Ligar</a> | <a href="https://wa.me/${num}" style="color:green">WhatsApp</a>`, 'contact')
+  closeContact()
+  document.getElementById('cNome').value=''; document.getElementById('cNumero').value=''
+}
+
+// CÂMARA
+function openCamera(){document.getElementById('cameraInput').click()}
+document.getElementById('cameraInput').addEventListener('change', e=>{
+  let file=e.target.files[0]
+  if(file){
+    let url=URL.createObjectURL(file)
+    addMessage(`<img src="${url}"><br>📸 Câmara`, 'image', url)
+  }
+  filePanel.classList.remove('open'); e.target.value=''
+})
+
+// Carregar histórico
+let hist=JSON.parse(localStorage.getItem('chatLF')||'[]')
+hist.forEach(h=>{ if(chat.children.length<10) addMessage(h.html,h.type,h.url) })
+</script>
+</body>
+</html>

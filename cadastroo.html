@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fl cadastro</title>
+    <link rel="stylesheet" href="Indice.css">
+</head>
+<style>
+*{box-sizing:border-box; font-family:Arial}
+body{background:#f0f2f5; margin:0; padding:15px; background-image: url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg);        background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;}
+.box{max-width:680px; margin:0 auto; background:white; border-radius:16px; padding:22px; box-shadow:0 4px 15px rgba(0,0,0,0.08)}
+h2{text-align:center; color:#1f7dd8; margin:0 0 15px}
+label{font-size:13px; font-weight:bold; color:#444; margin-top:10px; display:block}
+.input{width:100%; padding:12px; border:1px solid #ddd; border-radius:10px; margin:5px 0 10px; font-size:15px}
+.row{display:flex; gap:10px}
+.row .input{flex:1}
+.sexo{display:flex; gap:15px; margin:8px 0 15px}
+.sexo label{font-weight:normal; display:flex; align-items:center; gap:5px; cursor:pointer; background:#f5f7fa; padding:8px 15px; border-radius:20px; border:1px solid #ddd}
+.sexo input:checked + span{font-weight:bold; color:#1f7dd8}
+.btn{width:100%; background:#1f7dd8; color:white; border:none; padding:14px; border-radius:10px; font-weight:bold; font-size:16px; cursor:pointer; margin-top:10px}
+.erro{color:#ff3b30; font-size:12px; display:none}
+#botao{
+  border: 2px solid rgba(0, 157, 255, 0.845);
+  margin-left: 1100px;
+  border-radius: 20px;
+  width: 100px;
+  height: 30px;
+  background-color: rgb(127, 255, 244);
+ margin-block: 30px;
+ 
+}
+h1{
+  text-align: justify;
+}
+
+nav{
+  display: flex;
+
+
+}
+#botao a{
+text-decoration: none;  
+}
+#botao-principal a{
+text-decoration: none;  
+}
+#botao{
+  text-decoration: none;
+}
+
+</style>
+<body>
+<nav>
+ <h1>LFentregadora.Lda</h1>
+ <button id="botao"><a href="Segunda pagina.html">Voltar</a></button>
+</nav>
+
+    <div class="box">
+  <h2>Cadastrado</h2>
+
+  <label>Nome completo</label>
+  <input class="input" id="nome" placeholder="Ex: Felismina Langa">
+
+  <label>Apelido</label>
+  <input class="input" id="apelido" placeholder="Ex: Langa">
+
+  <div class="row">
+    <div style="flex:1">
+      <label>Data de nascimento</label>
+      <input class="input" id="nascimento" type="date">
+    </div>
+    <div style="flex:1">
+      <label>N. de BI</label>
+      <input class="input" id="bi" placeholder="Ex: 1101012345678C" maxlength="14">
+    </div>
+  </div>
+
+  <label>Contacto</label>
+  <input class="input" id="contacto" type="tel" placeholder="Ex: 82 123 4567">
+
+  <label>Email</label>
+  <input class="input" id="email" type="email" placeholder="Ex: cliente@gmail.com">
+
+  <label>Senha</label>
+  <input class="input" id="senha" type="password" placeholder="Mínimo 6 caracteres">
+
+  <label>Confirmar senha</label>
+  <input class="input" id="confSenha" type="password" placeholder="Repita a senha">
+  <span class="erro" id="erroSenha">As senhas não coincidem!</span>
+
+  <label>Sexo</label>
+  <div class="sexo">
+    <label><input type="radio" name="sexo" value="Masculino" checked><span>♂ Masculino</span></label>
+    <label><input type="radio" name="sexo" value="Feminino"><span>♀ Feminino</span></label>
+  </div>
+
+  <button class="btn" onclick="cadastrar()">Cadastrar</button>
+  <p style="text-align:center; font-size:13px; margin-top:12px"><a style="text-decoration: none;" href="Login.html">Já tem conta? </a><a href="perfil.html" style="color:#1f7dd8; text-decoration: none;">Ver perfil</a></p>
+</div>
+    
+
+
+<script>
+function cadastrar(){
+  let nome = document.getElementById('nome').value.trim();
+  let apelido = document.getElementById('apelido').value.trim();
+  let nascimento = document.getElementById('nascimento').value;
+  let bi = document.getElementById('bi').value.trim();
+  let contacto = document.getElementById('contacto').value.trim();
+  let email = document.getElementById('email').value.trim();
+  let senha = document.getElementById('senha').value;
+  let confSenha = document.getElementById('confSenha').value;
+  let sexo = document.querySelector('input[name="sexo"]:checked').value;
+
+  if(!nome || !apelido || !contacto || !senha){
+    alert("Preencha Nome, Apelido, Contacto e Senha!");
+    return;
+  }
+  if(senha !== confSenha){
+    document.getElementById('erroSenha').style.display='block';
+    return;
+  }
+  if(senha.length < 6){
+    alert("Senha mínimo 6 caracteres!");
+    return;
+  }
+
+  // TAG QUE GUARDA TODOS OS DADOS
+  const clienteLF = {
+    id: Date.now().toString(),
+    nomeCompleto: nome,
+    apelido: apelido,
+    dataNascimento: nascimento,
+    bi: bi,
+    contacto: contacto,
+    email: email,
+    senha: senha,
+    sexo: sexo,
+    dataCadastro: new Date().toISOString()
+  };
+
+  localStorage.setItem('clienteLF', JSON.stringify(clienteLF));
+  localStorage.setItem('clienteLogadoLF', 'true');
+
+  // MANDA TUDO PRA PÁGINA DO PERFIL
+  window.location.href = "perfil do cliente.html?cadastro=ok";
+}
+document.getElementById('confSenha').addEventListener('input', ()=>{
+  if(document.getElementById('confSenha').value === document.getElementById('senha').value){
+    document.getElementById('erroSenha').style.display='none';
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-mz">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lfentregadora.Lda - Pagina inicial</title>
+  <link rel="stylesheet" href="Indice.css" />
+  <link rel="stylesheet" href="Segunda pagina (2).css" />
+</head>
+<style>
+  body{
+    background-image: url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg);
+            background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;
+  }
+  .tela-inicial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.tela-inicial .subtitulo {
+  font-family: var(--fonte-titulo);
+  text-align: center;
+  font-size: 18px;
+  max-width: 640px;
+  margin: 6px auto;
+}
+
+.grupo-acoes-inicial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.texto-rodape-inicial {
+  margin-top: auto;
+  padding-top: 60px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+/* Botao redondo do sino.
+   padding:0 e essencial: o .botao-principal global tem padding 14px 40px,
+   que e maior que os 56px de largura e deformava o circulo. */
+
+.tela-inicial .botao-principal {
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  background: #cfeeeb;
+  color: var(--cor-texto-escuro);
+}
+
+
+.botao-inicial {
+  border-radius: 20px;
+  width: 100px;
+  height: 40px;
+  background: #cfeeeb;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+.botao-fantasma a:hover{
+font-size: 15px;
+cursor: pointer;
+
+
+
+}
+
+.botao-fantasma a{
+  text-decoration: none;
+  color: #111;
+}
+
+#icone-menu-pontos a{
+  text-decoration: none;
+  color: var(--cor-branco--);
+}
+
+.link-secundario a{
+  text-decoration: none;
+  font-size: 20px;
+}
+nav{
+  background-color: rgba(255, 255, 255, 0.573);
+  width: 100%;
+  height: 70px;
+}
+</style>
+<body>
+<nav>
+    <h1>LFentregadora.Lda</h1>
+    <div id="icone-menu-pontos" style="font-size: 50px; "><a href="Menu.html">&#8942;&#8942;</a></div>
+  </nav>
+
+
+
+  <div class="lista-frames">
+
+    <section class="frame tela-inicial">
+
+   
+
+
+      <!-- Menu de tres pontos no lado direito -->
+
+      
+
+      <p class="subtitulo" style="margin-top:60px; font-size:27px;">
+        Seja bem vindo a plataforma da Lfentregadora.lda.
+      </p>
+      <p class="subtitulo" style="font-size: 25px;">A sua satisfacao e o nosso maior objectivo</p>
+
+      <div class="grupo-acoes-inicial">
+        <button class="botao-fantasma" style="max-width:420px; background-color: rgb(121, 215, 214); width: 200px; height: 50px;
+        border-radius: 20px;margin-top: 50px; border: 1px solid  rgb(121, 215, 214); ">
+         <a href="pagina principal.html" >Clique para pagina seguinte</a> 
+        </button>
+
+        <p class="link-secundario" style="margin-bottom:0; font-size: 20px; margin-bottom: 40px;">Deseja cadastrar-se?</p>
+        <button class="botao-inicial"> <a href="Cadastro.html" style="color: black; text-decoration: none;">Clique aqui</a></button>
+
+        <p class="link-secundario" ><a href="Login.html" style="color: rgb(223, 241, 248); margin: 30px;">Ja tem uma conta? </a></p>
+      </div>
+
+      <p class="texto-rodape-inicial">Elegancia, Beleza, Alimentacao e Organizacao</p>
+    
+    </section>
+
+  </div>
+</body>
+</html>

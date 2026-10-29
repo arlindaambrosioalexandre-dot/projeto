@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-mz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamentos - LFentregadora</title>
+    <link rel="stylesheet" href="Indice.css">
+    <link rel="stylesheet" href="Pagamentos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<style>
+    body{
+        background-image: url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg);
+                background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;
+    }
+    #botao{border:2px solid rgba(0, 157, 255, 0.53); margin-left:auto; border-radius:20px; width:100px; height:32px; background:rgb(127,255,244); display:block}
+h1{text-align:justify}
+nav{display:flex; align-items:center; padding:12px 16px; background:#ffffff70}
+#botao a{text-decoration:none; color:#111212; font-weight:bold}
+
+.filho2{max-width:600px; margin:0 auto; padding:0 16px}
+.filho2 p{font-size:20px; margin:6px 0; color:#fcfbfb}
+.filho2 h3{font-size:20px; text-align:center; margin:18px 0}
+
+.pay-option{background:#faf9f9; border:1px solid #ddd; border-radius:12px; margin:10px 0; overflow:hidden; color: black;}
+.pay-header{display:flex; justify-content:space-between; align-items:center; padding:14px 16px; cursor:pointer; background:#fdfeff}
+.pay-header label{font-size:18px; cursor:pointer; display:flex; align-items:center; gap:8px; font-weight:600}
+.seta{font-size:16px; transition:0.2s}
+.dropdown{display:none; flex-direction:column; gap:10px; padding:14px; background:#fcfefe; border-top:1px solid #eee}
+.dropdown.open{display:flex}
+.dropdown input{padding:12px; border:1px solid #ccc; border-radius:8px; font-size:14px;}
+
+#filho{text-align:center; margin:20px auto}
+#filho label{font-size:18px; font-weight:600}
+#filho input{padding:12px; width:80%; max-width:300px; border-radius:8px; margin-top:8px; font-size:16px; border:1px solid #999}
+
+#filho1{max-width:600px; margin:0 auto; padding:0 16px}
+.calc-row{display:flex; justify-content:space-between; align-items:center; margin:10px 0}
+.calc-row label{font-size:15px}
+.calc-row input{width:150px; padding:8px; border-radius:8px; border:none; background:rgba(94,97,98,0.15); text-align:right; font-weight:bold;  color: #fdfeff;}
+.calc-row.destaque input{background:#1f7dd8; color:rgb(27, 23, 23);  color: #fdfeff;}
+
+#btnPagar{display:block; width:90%; max-width:400px; margin:30px auto; padding:16px; background:#00c853; color:rgb(16, 15, 15); border:none; border-radius:12px; font-size:18px; font-weight:bold; cursor:pointer}
+#btnPagar:active{transform:scale(0.98)}
+</style>
+<body>
+    <nav>
+        <h1>LFentregadora.Lda</h1>
+        <button id="botao"><a href="Menu.html">Voltar</a></button>
+    </nav>
+    
+    <h2 style="font-size:28px; text-align:center; margin:20px 0">Pagamentos</h2>
+
+    <div class="filho2">
+        <p>Origem: Conta Nacional</p> 
+        <p>Destino: LFentregadora.Lda</p> 
+        
+        <h3>Como deseja pagar?</h3>
+
+        <!-- CARTÃO - BANCO -->
+        <div class="pay-option">
+            <div class="pay-header" onclick="toggleMenu('cartao')">
+                <label><input type="radio" name="pag" value="Cartao" checked> Cartão / Banco</label>
+                <span class="seta" id="seta-cartao">▼</span>
+            </div>
+            <div class="dropdown" id="menu-cartao">
+                <input type="text" id="banco" placeholder="Nome do Banco (ex: BCI, Millennium)">
+                <input type="text" id="numCartao" placeholder="Número do Cartão  **** **** ****">
+                <div style="display:flex; gap:10px">
+                    <input type="text" id="validade" placeholder="Validade MM/AA" style="flex:1">
+                    <input type="text" id="cvv" placeholder="CVV" style="flex:1">
+                </div>
+                <input type="text" id="titular" placeholder="Nome do titular">
+            </div>
+        </div>
+
+        <!-- E-MOLA -->
+        <div class="pay-option">
+            <div class="pay-header" onclick="toggleMenu('emola')">
+                <label><input type="radio" name="pag" value="E-mola"> E-mola</label>
+                <span class="seta" id="seta-emola">▼</span>
+            </div>
+            <div class="dropdown" id="menu-emola">
+                <input type="text" id="numEmola" placeholder="Número E-mola 82...">
+                <input type="text" id="nomeEmola" placeholder="Nome do titular E-mola">
+            </div>
+        </div>
+
+        <!-- M-PESA -->
+        <div class="pay-option">
+            <div class="pay-header" onclick="toggleMenu('mpesa')">
+                <label><input type="radio" name="pag" value="M-pesa"> M-pesa</label>
+                <span class="seta" id="seta-mpesa">▼</span>
+            </div>
+            <div class="dropdown" id="menu-mpesa">
+                <input type="text" id="numMpesa" placeholder="Número M-pesa 84...">
+                <input type="text" id="nomeMpesa" placeholder="Nome do titular M-pesa">
+            </div>
+        </div>
+
+        <!-- M-KESH -->
+        <div class="pay-option">
+            <div class="pay-header" onclick="toggleMenu('mkesh')">
+                <label><input type="radio" name="pag" value="M-kesh"> M-kesh</label>
+                <span class="seta" id="seta-mkesh">▼</span>
+            </div>
+            <div class="dropdown" id="menu-mkesh">
+                <input type="text" id="numMkesh" placeholder="Número M-kesh 82...">
+                <input type="text" id="nomeMkesh" placeholder="Nome do titular M-kesh">
+            </div>
+        </div>
+    </div>
+
+    <div id="filho">
+        <label>Insira o valor (MT)</label>
+        <input type="number" id="valorBase" placeholder="0.00" oninput="calcular()">
+    </div>
+
+    <div id="filho1">
+        <div class="calc-row"><label>Valor comercial</label><input type="text" id="vComercial" readonly></div>
+        <div class="calc-row"><label>IVA (16%)</label><input type="text" id="vIva" readonly></div>
+        <div class="calc-row"><label>Valor total</label><input type="text" id="vTotal" readonly></div>
+        <div class="calc-row destaque"><label>Valor total a ser debitado</label><input type="text" id="vDebitado" readonly></div>
+    </div>
+
+    <button id="btnPagar" onclick="fazerPagamento()">Confirmar e Pagar</button>
+
+    <!-- COMPROVATIVO -->
+    <div id="comprovativoBox" style="display:none"></div>
+
+<script>
+function toggleMenu(id){
+    let menu=document.getElementById('menu-'+id)
+    let seta=document.getElementById('seta-'+id)
+    let aberto = menu.classList.contains('open')
+    
+    // fecha todos
+    document.querySelectorAll('.dropdown').forEach(m=>m.classList.remove('open'))
+    document.querySelectorAll('.seta').forEach(s=>s.textContent='▼')
+
+    if(!aberto){
+        menu.classList.add('open')
+        seta.textContent='▲'
+        // marca radio
+        let radio = menu.parentElement.querySelector('input[type=radio]')
+        if(radio) radio.checked=true
+    }
+}
+
+function calcular(){
+    let base=parseFloat(document.getElementById('valorBase').value)||0
+    let iva=base*0.16
+    let total=base+iva
+    document.getElementById('vComercial').value=base.toFixed(2)+' MT'
+    document.getElementById('vIva').value=iva.toFixed(2)+' MT'
+    document.getElementById('vTotal').value=total.toFixed(2)+' MT'
+    document.getElementById('vDebitado').value=total.toFixed(2)+' MT'
+}
+
+function fazerPagamento(){
+    let metodo=document.querySelector('input[name=pag]:checked').value
+    let base=parseFloat(document.getElementById('valorBase').value)
+    if(!base){ alert('Insira o valor'); return }
+
+    let dados={
+        id:'LF'+Date.now(),
+        data: new Date().toLocaleString('pt-MZ'),
+        origem:'Conta Nacional',
+        destino:'LFentregadora.Lda',
+        metodo:metodo,
+        valorBase:base,
+        iva:base*0.16,
+        total:base*1.16,
+        detalhes:{}
+    }
+
+    if(metodo==='Cartao'){
+        dados.detalhes.banco=document.getElementById('banco').value
+        dados.detalhes.titular=document.getElementById('titular').value
+        dados.detalhes.cartao=document.getElementById('numCartao').value.slice(-4)
+        if(!dados.detalhes.banco) return alert('Preencha dados do banco')
+        gerarPDF(dados)
+    }else{
+        let numId = metodo==='E-mola'?'numEmola': metodo==='M-pesa'?'numMpesa':'numMkesh'
+        let nomeId = metodo==='E-mola'?'nomeEmola': metodo==='M-pesa'?'nomeMpesa':'nomeMkesh'
+        dados.detalhes.numero=document.getElementById(numId).value
+        dados.detalhes.nome=document.getElementById(nomeId).value
+        if(!dados.detalhes.numero) return alert('Preencha número '+metodo)
+        gerarMensagem(dados)
+    }
+
+    // GUARDAR E ENVIAR PARA PAGINA DE GUARDADOS
+    let guardados=JSON.parse(localStorage.getItem('pagamentosGuardados')||'[]')
+    guardados.push(dados)
+    localStorage.setItem('pagamentosGuardados', JSON.stringify(guardados))
+    localStorage.setItem('ultimoPagamento', JSON.stringify(dados))
+}
+
+function gerarPDF(d){
+    const { jsPDF } = window.jspdf
+    let doc=new jsPDF()
+    doc.setFontSize(18); doc.text('COMPROVATIVO DE PAGAMENTO', 20, 20)
+    doc.setFontSize(12)
+    doc.text(`LFentregadora.Lda`,20,30)
+    doc.text(`ID: ${d.id}`,20,40)
+    doc.text(`Data: ${d.data}`,20,48)
+    doc.text(`Origem: ${d.origem}`,20,56)
+    doc.text(`Destino: ${d.destino}`,20,64)
+    doc.text(`Metodo: ${d.metodo} - ${d.detalhes.banco}`,20,72)
+    doc.text(`Titular: ${d.detalhes.titular}`,20,80)
+    doc.text(`Cartao: **** **** **** ${d.detalhes.cartao}`,20,88)
+    doc.text(`Valor Base: ${d.valorBase.toFixed(2)} MT`,20,100)
+    doc.text(`IVA 16%: ${d.iva.toFixed(2)} MT`,20,108)
+    doc.setFontSize(14); doc.text(`TOTAL DEBITADO: ${d.total.toFixed(2)} MT`,20,120)
+    doc.setFontSize(10); doc.text('Obrigado pela preferencia - LFentregadora.Lda',20,140)
+    
+    doc.save(`Comprovativo_${d.id}.pdf`)
+    
+    mostrarMsg(`<h3>✅ Pagamento Banco Confirmado</h3><p>PDF baixado: Comprovativo_${d.id}.pdf</p><p>Total: ${d.total.toFixed(2)} MT</p>`, d)
+}
+
+function gerarMensagem(d){
+    let box=document.getElementById('comprovativoBox')
+    box.style.display='block'
+    box.innerHTML=`
+    <div style="background:#e8f5e9; border:2px solid #00c853; border-radius:14px; padding:16px; margin:20px">
+        <h3 style="color:#00c853">✅ Pagamento ${d.metodo} Confirmado</h3>
+        <p><b>ID:</b> ${d.id}</p>
+        <p><b>Data:</b> ${d.data}</p>
+        <p><b>Para:</b> LFentregadora.Lda</p>
+        <p><b>Número:</b> ${d.detalhes.numero}</p>
+        <p><b>Nome:</b> ${d.detalhes.nome}</p>
+        <p><b>Valor:</b> ${d.total.toFixed(2)} MT</p>
+        <small style="color:#555">Mensagem enviada para ${d.detalhes.numero} - Você pagou ${d.total.toFixed(2)} MT para LFentregadora</small>
+        <br><br>
+        <button onclick="irGuardados()" style="width:100%; padding:12px; background:#1f7dd8; color:white; border:none; border-radius:8px">Ver em Guardados</button>
+    </div>`
+    // simula SMS
+    setTimeout(()=>alert(`📩 SMS enviado para ${d.detalhes.numero}: Pagou ${d.total.toFixed(2)} MT para LFentregadora.Lda. ID:${d.id}`),500)
+}
+
+function mostrarMsg(html, d){
+    let box=document.getElementById('comprovativoBox')
+    box.style.display='block'
+    box.innerHTML=`
+    <div style="background:#e3f2fd; border:2px solid #1f7dd8; border-radius:14px; padding:16px; margin:20px">
+        ${html}
+        <br><button onclick="irGuardados()" style="width:100%; padding:12px; background:#1f7dd8; color:white; border:none; border-radius:8px">Ir para Guardados</button>
+    </div>`
+}
+
+function irGuardados(){
+    // Envia directamente para pagina de guardados
+    window.location.href='Guardados.html'
+}
+
+// abre primeiro menu por padrão
+toggleMenu('cartao')
+let lista = JSON.parse(localStorage.getItem('pagamentosGuardados')||'[]')
+</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificacoes</title>
+    <link rel="stylesheet" href="Calendario de promocoes.css ">
+    <link rel="stylesheet" href="Indice.css">
+</head>
+<style>
+  :root {
+  --primary: #6c4cf1;
+  --bg: #f5f6fc;
+  --text: #24243a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+header {
+  background: var(--primary);
+  color: white;
+  padding: 24px;
+}
+header h1 { margin: 0 0 8px; }
+nav {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  background: white;
+  flex-wrap: wrap;
+}
+nav button, button {
+  border: 0;
+  border-radius: 8px;
+  padding: 11px 15px;
+  cursor: pointer;
+  background: var(--primary);
+  color: white;
+  font-weight: bold;
+}
+nav button { background: #eeeafd; color: var(--primary); }
+nav button.active { background: var(--primary); color: white; }
+main { max-width: 1100px; margin: auto; padding: 20px; }
+
+body{font-family:Arial; margin:0; background:#f5f5f7; background-image: url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg); background-repeat: no-repeat;        background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;}
+.topo{background:#6c2cff; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0}
+.topo h2{margin:0}
+.badge{background:#ff3b30; color:white; border-radius:20px; padding:2px 8px; font-size:12px}
+.lista{max-width:600px; margin:15px auto; padding:10px}
+.notif{background:white; border-radius:12px; padding:15px; margin:10px 0; display:flex; gap:12px; box-shadow:0 2px 8px rgba(0,0,0,0.06); border-left:4px solid #6c2cff; cursor:pointer}
+.notif.nova{border-left-color:#ff3b30; background:#fff8f8}
+.notif.lida{opacity:0.7; border-left-color:#ddd}
+.icon{width:45px; height:45px; background:#f0e8ff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0}
+.conteudo{flex:1}
+.conteudo b{display:block; font-size:15px}
+.conteudo small{color:#666; font-size:13px}
+.tempo{font-size:11px; color:#999; margin-top:5px}
+.btn{width:100%; background:#6c2cff; color:white; border:none; padding:12px; border-radius:10px; font-weight:bold; cursor:pointer; margin-top:10px}
+.vazio{text-align:center; padding:50px 20px; color:#999}
+</style>
+<body >
+<header>
+    <h1>LFentregadora.Lda</h1>
+<h2 style="text-align: center;">🔔 Notificacoes das promocoes</h2>
+
+</header>
+<div style="text-align: center;" class="topo">
+  
+  <span><span id="contador" class="badge">0</span> <button onclick="limparTudo()" style="background:white; color:#6c2cff; border:none; padding:6px 12px; border-radius:20px; cursor:pointer; font-weight:bold">Limpar</button></span>
+</div>
+
+<div class="lista" id="listaNotifs">
+  <div class="vazio" style="text-align: center;">Carregando promoções...</div>
+</div>
+
+
+  <script>
+    // CONFIG FIREBASE - COLA SEU CONFIG AQUI
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, collection, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "SUA_API_KEY",
+  authDomain: "lf-entregadora.firebaseapp.com",
+  projectId: "lf-entregadora"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const lista = document.getElementById('listaNotifs');
+const contador = document.getElementById('contador');
+let lidas = JSON.parse(localStorage.getItem('notifsLidasLF') || '[]');
+
+// PEGA DO CALENDÁRIO DE PROMOÇÕES
+onSnapshot(query(collection(db, "promocoes"), orderBy("criarEm","desc")), snap=>{
+  if(snap.empty){
+    lista.innerHTML = '<div class="vazio">📭 Nenhuma promoção ainda.<br>Quando você publicar no calendário, aparece aqui.</div>';
+    contador.textContent="0";
+    return;
+  }
+
+  lista.innerHTML="";
+  let novas=0;
+
+  snap.forEach(docSnap=>{
+    const p = docSnap.data();
+    const id = docSnap.id;
+    const isNova = !lidas.includes(id);
+    if(isNova) novas++;
+
+    const dataFormatada = p.data ? new Date(p.data).toLocaleDateString('pt-MZ') : 'Hoje';
+
+    lista.innerHTML+=`
+      <div class="notif ${isNova?'nova':'lida'}" onclick="abrirNotif('${id}')">
+        <div class="icon">🎉</div>
+        <div class="conteudo">
+          <b>${p.titulo || 'Nova Promoção LF'}</b>
+          <small>${p.mensagem || ''} - <b style="color:#6c2cff">${p.desconto||''}% OFF</b></small>
+          <div class="tempo">📅 ${dataFormatada} às ${p.hora||''} • Clique para encomendar</div>
+        </div>
+      </div>
+    `;
+  });
+
+  contador.textContent = novas;
+  // Atualiza título da aba
+  if(novas>0) document.title = `(${novas}) Notificações - LF`;
+});
+
+window.abrirNotif = (id)=>{
+  if(!lidas.includes(id)){
+    lidas.push(id);
+    localStorage.setItem('notifsLidasLF', JSON.stringify(lidas));
+  }
+  // Leva pra encomenda com a promoção já escrita
+  const titulo = event.currentTarget.querySelector('b').innerText;
+  window.location.href = `encomendas.html?descricao=${encodeURIComponent('Quero: '+titulo)}`;
+};
+
+window.limparTudo = ()=>{
+  if(confirm("Marcar todas como lidas?")){
+    document.querySelectorAll('.notif').forEach(n=>{ 
+      let id = n.getAttribute('onclick').match(/'([^']+)'/)[1];
+      if(!lidas.includes(id)) lidas.push(id);
+    });
+    localStorage.setItem('notifsLidasLF', JSON.stringify(lidas));
+    location.reload();
+  }
+};
+
+// MODO SEM FIREBASE (teste) - se não tiver config, usa localStorage do calendário
+if(!firebaseConfig.apiKey.includes('SUA_')){
+}else{
+  // fallback local
+  const promosLocal = JSON.parse(localStorage.getItem('promocoesLF') || '[]');
+  if(promosLocal.length>0){
+    // renderiza do localStorage
+  }
+}
+
+  </script>
+
+    
+</body>
+</html>

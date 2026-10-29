@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-mz">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lfentregadora.Lda - Encomenda</title>
+  <link rel="stylesheet" href="Indice.css" />
+  <link rel="stylesheet" href="pagina principal.css" />
+</head>
+<style>
+  body{
+    background-image: url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg);
+            background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;
+  }
+  a{
+    text-decoration: none;
+    color: black;
+  }
+ .tela-encomenda {
+  padding: 28px 40px 40px;
+}
+
+.barra-busca-encomenda {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.campo-busca {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  padding: 14px 20px;
+  color: #555;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botao-enviar-pequeno {
+  background: #cfeeeb;
+  color: #111;
+  border-radius: 8px;
+  padding: 12px 26px;
+  font-family: var(--fonte-titulo);
+  border: none;
+  cursor: pointer;
+}
+.botao-enviar-pequeno:hover {
+  background: rgba(255, 255, 255, 0.85);
+  color: #b05353;
+  /* removido font-size:18px do hover: fazia o botao "saltar" e mexer no layout */
+}
+
+.etiqueta-produtos-servicos {
+  display: inline-block;
+  background: #cfeeeb;
+  color: var(--cor-texto-escuro);
+  padding: 10px 20px;
+  border-radius: var(--raio-padrao);
+  font-weight: bold;
+  margin: 24px 0 16px;
+}
+
+/* lista de parceiros: logo + descricao lado a lado */
+.lista-parceiros {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.linha-parceiro {
+  display: flex;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  gap: 10px;
+}
+
+.logo-parceiro {
+  width: 220px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--cor-branco);
+}
+
+.descricao-parceiro {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--cor-texto-escuro);
+  padding: 16px 24px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+/* cores individuais aproximadas de cada marca parceira */
+.logo-electronic-store { background: #e91e63; }
+.logo-kingpie { background: #6a1b9a; }
+.logo-adidas { background: #ffffff; color: #111; }
+.logo-alo { background: #111111; color: #ffffff; }
+.logo-muzza { background: #d32f2f; }
+.logo-take-away { background: #f5f5f0; color: #d18a1b; }
+.logo-dueros-sabores { background: #ffffff; color: #d18a1b; }
+.logo-puma { background: #111111; }
+
+/* Responsivo (tem de vir DEPOIS das regras normais) */
+@media (max-width: 1150px) {
+  .linha-parceiro { flex-direction: column; }
+  .logo-parceiro { width: 100%; }
+}
+.link{
+
+margin-left: 1000px;
+  
+ gap: 50px;
+  
+ margin-block: 30px;
+}
+h1{
+  text-align: justify;
+}
+
+nav{
+display: flex;
+background-color: rgba(231, 238, 238, 0.388);
+
+}
+.link a{
+text-decoration: none;
+ gap: 50px; 
+ color: white;
+ margin-left: 20px;
+ font-size: 18px;
+}
+.etiqueta-produtos-servicos a{
+  
+  text-decoration: none;
+}
+ 
+</style>
+<body>
+  <nav>
+<h1>LFentregadora.Lda</h1>
+<div class="link">
+<a  href="Segunda pagina.html" >Inicio</a>
+<a  href="Cadastro.html" >Cadastro</a>
+ <a  href="Menu.html" >Menu</a>
+ </div>
+ </nav>
+ 
+   <div style="max-width:600px; margin:15px auto; display:flex; align-items:center; gap:8px; background:#f0f2f5; padding:8px 12px; border-radius:30px; border:1px solid #e0e0e0">
+
+  <input type="search" list="opcoesLF" id="barraLF" 
+  placeholder="Faça a sua encomenda..." 
+  style="flex:1; border:none; background:transparent; padding:12px 15px; font-size:16px; outline:none">
+
+  <!-- Botão de Escolha de Encomenda com Link Dinâmico via JavaScript -->
+ 
+
+  <button id="btnEnviar" style="background:#25D366; border:none; width:45px; height:45px; border-radius:50%; color:white; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center"> 
+     <a href="#" id="linkEscolher" style="background:#007bff; color: white; padding: 10px 15px; border-radius: 20px; font-size: 14px; white-space: nowrap;">
+    ➤
+  </a>
+  </button>
+</div>
+
+<datalist id="opcoesLF">
+  <!-- FAST FOOD -->
+  <option value="Frango frito">
+  <option value="Batatas fritas">
+  <option value="Hamburguer">
+  <option value="Sandes">
+  <option value="Rosquinhas">
+  <option value="Cachorro quente">
+  <option value="Apas">
+  <option value="Chamussas">
+  <option value="Frango assado">
+  <option value="Pregos">
+  
+  <!-- COMIDA -->
+  <option value="Arroz com feijão">
+  <option value="Arroz com frango cozido">
+  <option value="Arroz com frango azambeziano">
+  <option value="Arroz com guisado de vaca">
+  <option value="Arroz com guisado">
+  <option value="Guisado de cabrito">
+  <option value="Arroz com fígado">
+  <option value="Arroz com moelas">
+  <option value="Frango assado e salada">
+  <option value="Massa cotovelo">
+  <option value="Massa esparguete">
+  <option value="Xima com frango assado">
+  <option value="Xima com fígado">
+  <option value="Xima com peru">
+  <option value="Xima com carne">
+  <option value="Guisado de vaca">
+  <option value="Guisado de porco">
+
+  <!-- VESTUÁRIO -->
+  <option value="Vestidos">
+  <option value="Calças">
+  <option value="Calções">
+  <option value="Bodies">
+  <option value="Pantalonas">
+  <option value="Macacões">
+  <option value="Camisas">
+  <option value="Camisetas">
+  <option value="Saias">
+  <option value="Conjuntos">
+  <option value="Fatos">
+  <option value="Blusões">
+
+  <!-- ELÉCTRICOS -->
+  <option value="Televisões">
+  <option value="TV Plasmas">
+  <option value="Congeladores">
+  <option value="Secadores de mão">
+  <option value="Secadores">
+  <option value="Geladeiras">
+  <option value="Microondas">
+  <option value="Fogões eléctricos">
+  <option value="Máquinas de lavar roupa">
+  <option value="GBL">
+
+  <!-- MATERIAL ESCRITÓRIO -->
+  <option value="Cadeiras">
+  <option value="Mesas">
+  <option value="Computadores">
+  <option value="Sofás">
+  <option value="Projectores">
+  <option value="Quadros">
+  <option value="Cadeiras giratórias">
+
+  <!-- CALÇADOS -->
+  <option value="Ténis">
+  <option value="Sapatos">
+  <option value="Sapatilhas">
+  <option value="Sandálias">
+  <option value="Chinelos">
+  <option value="Crocs">
+  <option value="Pantufas">
+  <option value="Botas">
+  <option value="Saltos">
+
+  <!-- DECORAÇÃO -->
+  <option value="Cortinas">
+  <option value="Tapetes">
+  <option value="Azulejos">
+  <option value="Mármores">
+  <option value="Vasos">
+  <option value="Tintas">
+  <option value="Lâmpadas">
+  <option value="Pias">
+  <option value="Banheiras">
+  <option value="Chuveiros">
+  <option value="Guarda-fatos">
+</datalist>
+        
+      </div>
+
+      <span class="etiqueta-produtos-servicos"><a href="Servicos.html">Produtos e Servicos disponiveis</a></span>
+
+      <div class="lista-parceiros">
+        <div class="linha-parceiro">
+          <div class="logo-parceiro logo-electronic-store"><a href="https://fity.club/lists/suggestions/electronics-store/">Electronic Store</a></div>
+          <div class="descricao-parceiro">
+            A Electronic Store e uma empresa que se destina a venda de aparelhos electronicos, comecando por geladeiras, televisoes, fogoes electricos, aspiradores, fornos electricos, microondas, etc.
+            Ela oferece servicos de reparacao, encomendas e entregas ao domicilio com a empresa Lfentregadora.lda, onde fazemos uma parceria.
+          </div>
+        </div>
+
+        <div class="linha-parceiro">
+          <div class="logo-parceiro logo-kingpie"><a href="https://kingpie.co.za/">KING&#128054;PIE</a></div>
+          <div class="descricao-parceiro">
+            O Kingpie e um restaurante que se destina a venda de frituras, fastfood, tais como frango frito, hamburgueres, batatas fritas, etc.
+            Ela oferece servicos de encomendas e entregas ao domicilio com a nossa empresa Lfentregadora.lda, onde fazem uma parceria.
+          </div>
+        </div>
+
+        <div class="linha-parceiro">
+          <div class="logo-parceiro logo-adidas"><a href="https://www.adidas.com/us">adidas</a></div>
+          <div class="descricao-parceiro">
+            A adidas e uma empresa de marca unica que se destina a fabricacao e venda de calcados, vestuarios, acessorios, etc.
+            Ela oferece servicos de encomendas e entregas ao domicilio com a nossa empresa Lfentregadora.lda, onde fazemos uma parceria.
+          </div>
+        </div>
+
+        <div class="linha-parceiro">
+          <div class="logo-parceiro logo-alo"><a style="color: white;" href="https://www.aloyoga.com/en-mz">alo</a></div>
+          <div class="descricao-parceiro">
+            A alo e uma empresa de marca unica e recente que se destina a fabricacao e venda de calcados, vestuarios, acessorios, etc.
+            Ela oferece servicos de encomendas e entregas ao domicilio com a nossa empresa Lfentregadora.lda, onde fazemos uma parceria.
+          </div>
+        </div>
+
+        <div class="linha-parceiro">
+          <div class="logo-parceiro logo-muzza"><a href="https://www.facebook.com/MuzzaPizzarias/">MUZZA</a></div>
+          <div class="descricao-parceiro">
+            A MUZZA pizzaria e um restaurante que se dedica a venda de pizzas com variedades de sabores e tamanhos.
+            Ela oferece servicos de encomendas e entregas ao domicilio com a nossa empresa Lfentregadora.lda, onde fazemos uma parceria.
+          </div>
+        </div>
+
+        <div class="linha-parceiro">
+          <div class="logo-parceiro logo-take-away"><a href="https://www.facebook.com/p/Take-away-Nacala-100094821400837/">take away NACALA</a></div>
+          <div class="descricao-parceiro">
+            O take away Nacala e um restaurante que se dedica a venda de comida, seja tradicional como nao, com variedades de tipos de pratos de acordo com o gosto do povo, etc.
+            Ele oferece servicos de encomendas e entregas ao domicilio com a nossa empresa Lfentregadora.lda, onde fazemos uma parceria.
+          </div>
+        </div>
+
+        <div class="linha-parceiro">
+          <div class="logo-parceiro logo-dueros-sabores"><a href="https://www.facebook.com/duerossabores/">Dueros Sabores</a></div>
+          <div class="descricao-parceiro">
+            O Dueros Sabores e um restaurante que se dedica a venda de comida, mais focado a comida internacional e nacional, e tambem faz e vende pizzas, etc.
+            Ele oferece servicos de encomendas e entregas ao domicilio com a nossa empresa Lfentregadora.lda, onde fazemos uma parceria.
+          </div>
+        </div>
+
+        <div class="linha-parceiro">
+          <div class="logo-parceiro logo-puma"><a style="color: white;" href="https://br.puma.com/">PUMA</a></div>
+          <div class="descricao-parceiro">
+            A puma e uma empresa de marca unica que se destina a fabricacao e venda de calcados, vestuarios, acessorios, etc.
+            Ela oferece servicos de encomendas e entregas ao domicilio com a nossa empresa Lfentregadora.lda, onde fazemos uma parceria.
+          </div>
+        </div>
+      </div>
+    
+    </section>
+
+  </div>
+
+  <script>
+    const barra = document.getElementById('barraLF');
+    const linkEscolher = document.getElementById('linkEscolher');
+
+    // Atualiza o link dinamicamente à medida que o usuário digita ou seleciona o produto
+    barra.addEventListener('input', function() {
+      const produtoEscolhido = this.value;
+      
+      // Dados padrão da LFentregadora ou da empresa parceira
+      const nomeEmpresa = "LFentregadora.Lda";
+      const telefoneEmpresa = "+258841234567";
+      const localizacaoEmpresa = "Nacala-Porto, Distrito";
+
+      // Monta a URL com os parâmetros corretos para a página de encomendas
+      const urlDestino = `Incomendas.html?produto=${encodeURIComponent(produtoEscolhido)}&empresa=${encodeURIComponent(nomeEmpresa)}&telefone_empresa=${encodeURIComponent(telefoneEmpresa)}&localizacao_empresa=${encodeURIComponent(localizacaoEmpresa)}`;
+      
+      // Atribui o link gerado ao botão/âncora de escolha
+      linkEscolher.href = urlDestino;
+    });
+
+    // Validação caso o utilizador clique sem escolher nada
+    linkEscolher.addEventListener('click', function(e) {
+      if (!barra.value.trim()) {
+        e.preventDefault();
+        alert("Por favor, digite ou selecione uma encomenda primeiro!");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encomendas - LFentregadora.Lda</title>
+    <link rel="stylesheet" href="Incomendas.css">
+    <link rel="stylesheet" href="Indice.css">
+    <style>
+      body {
+        background-image: url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg);
+        background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;
+      }
+ 
+.h1{
+    text-align: center;
+    color: white;
+    margin: 100px;
+}
+label{
+    color: white;
+    font-size: 20px;
+    margin-left: 30px
+}
+input{
+    background-color:rgba(235, 239, 239, 0.671);
+    height: 40px;
+    border-radius: 10px;
+    width: 500px;
+    margin-left: 20px
+}
+.botao{
+    background-color:rgb(100, 130, 123);
+    font-size: 20px;
+    border-radius: 10px;
+    color: rgb(200, 199, 199);
+    width: 15%;
+    height: 50px;
+    align-items: center;
+    margin-left: 80%;
+    margin-top:  50px;
+
+}
+.botao:hover{
+    background-color: rgb(175, 237, 217);
+    color: rgb(185, 181, 181);
+    font-size:25px;
+    width:150px;
+}
+#h1{
+    
+    margin-left: 100px;
+}
+.h2{
+        margin-left: 150px;
+        padding-left: 250px;
+
+}
+.h5{
+    margin-left: 100px;
+}
+
+#botao{
+   margin-top: 33px;
+    border: 2px solid aqua;
+    background-color: rgba(0, 255, 255, 0.897);
+    height: 30px;
+    width: 100px;
+    border-radius: 20px;
+    
+}
+#botao a{
+     text-decoration: none; 
+
+}
+
+h2{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 70px;
+}
+h1{
+    color: white; 
+   
+}
+.topo{
+    display: flex;
+    gap: 1000px;
+    
+}
+.container{
+    display: grid;
+    grid-template-columns: ;
+}
+    </style>
+</head>
+<body>
+    <header class="topo">
+        <h1 class="nome">LFentregadora.Lda</h1>
+        <button id="botao"><a href="pagina principal.html">Voltar</a></button>
+    </header>
+
+    <h2>Encomendas</h2>
+    <div class="Container">
+        <!-- Adicionados IDs para identificação via JavaScript -->
+        
+        <label for="descricao">Descrição do pedido:</label> 
+        <input type="text" id="descricao" required> <br><br>
+
+        <label for="nome_cliente">Nome Completo:</label>
+        <input type="text" id="nome_cliente" required><br><br>
+
+        <label for="localizacao_cliente">Localização:</label>
+        <input type="text" id="localizacao_cliente" required> 
+
+        <label for="bairro_cliente">Bairro:</label>
+        <input type="text" id="bairro_cliente" required><br><br>
+
+        <label for="contacto_cliente">Contactos:</label> 
+        <input type="text" id="contacto_cliente" required><br><br>
+
+        <label for="nome_empresa" class="h2">Nome da Empresa:</label>
+        <input type="text" id="nome_empresa" class="h2" required><br><br>
+
+        <label for="contacto_empresa" class="h2">Contactos da Empresa:</label>
+        <input type="text" id="contacto_empresa" class="h2" required><br><br>
+
+        <label for="localizacao_empresa">Localização da Empresa:</label>
+        <input type="text" id="localizacao_empresa" required><br><br>
+
+        <button class="botao"><a style="color: white; text-decoration: none;" href="pagina principal.html">Encomendar</a></button>
+    </div>
+
+    <!-- Script JavaScript para ler a URL e preencher os campos -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Obtém os parâmetros enviados pela URL
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // Lê os dados específicos enviados da página anterior
+            const produtoSel = urlParams.get('produto');
+            const empresaSel = urlParams.get('empresa');
+            const contactoEmpresaSel = urlParams.get('telefone_empresa');
+            const localizacaoEmpresaSel = urlParams.get('localizacao_empresa');
+
+            // Se existirem dados na URL, preenche automaticamente os campos do formulário
+            if (produtoSel) {
+                document.getElementById('descricao').value = "Encomenda: " + produtoSel;
+            }
+
+            if (empresaSel) {
+                document.getElementById('nome_empresa').value = empresaSel;
+            }
+
+            if (contactoEmpresaSel) {
+                document.getElementById('contacto_empresa').value = contactoEmpresaSel;
+            }
+
+            if (localizacaoEmpresaSel) {
+                document.getElementById('localizacao_empresa').value = localizacaoEmpresaSel;
+            }
+        });
+    </script>
+</body>
+</html>

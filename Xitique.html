@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-mz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lfentregadora.Lda - Grupos de xitique</title>
+<link rel="stylesheet" href="Indice.css">
+<link rel="stylesheet" href="Xitique.css">
+<style>
+  body{
+    background-image: url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg);
+               background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;
+  }
+.file-panel.open{display:flex!important}
+.file-panel{position:fixed;bottom:75px;left:10px;background:#fff;border-radius:14px;box-shadow:0 8px 25px rgba(0,0,0,.3);flex-direction:column;padding:8px;gap:5px;z-index:200;display:none;min-width:230px}
+.file-panel label,.file-panel button{padding:12px;border:none;background:#f5f5f5;border-radius:10px;text-align:left;cursor:pointer;font-weight:600}
+#ctx{position:fixed;background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.3);padding:6px;z-index:300;display:none;min-width:200px}
+#ctx button{width:100%;padding:10px;border:none;background:none;text-align:left;cursor:pointer;border-radius:8px}
+#ctx button:hover{background:#f0f0f0}
+.bubble img,.bubble video{max-width:240px;border-radius:10px;display:block;margin-bottom:4px}
+#contactModal{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:none;align-items:center;justify-content:center}
+#contactModal.open{display:flex}
+.modalBox{background:#fff;width:90%;max-width:360px;border-radius:16px;padding:18px}
+.modalBox input{width:100%;padding:11px;border:1px solid #ddd;border-radius:8px;margin:6px 0}
+.tela-grupo-xitique {
+  padding: 28px 40px 40px;
+}
+
+.subtitulo-grupo {
+  text-align: center;
+  font-family: var(--fonte-titulo);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.topo-marca{
+  text-align: justify;
+}
+.logo-letras{
+  text-align: left;
+  align-items: left;
+}
+
+#botao{
+  border: 2px solid rgba(0, 157, 255, 0.845);
+  margin-left: 1100px;
+  border-radius: 20px;
+  width: 100px;
+  height: 30px;
+  background-color: rgb(127, 255, 244);
+ margin-block: 30px;
+ 
+}
+h1{
+  text-align: justify;
+}
+
+nav{
+  display: flex;
+background-color: rgba(231, 238, 238, 0.388);
+
+}
+#botao a{
+  text-decoration: none;
+ 
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Times New Roman', serif}
+body,html{height:100%;overflow:hidden}
+.page{
+  width:100%;height:100vh;
+  background:url('ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg') no-repeat center center;
+  background-size:cover;
+  position:relative;
+  display:flex;flex-direction:column;
+}
+.top-bar{
+  background:rgba(255,255,255,0.28);
+  backdrop-filter:blur(2px);
+  padding:10px 8px;
+  color:#fff;
+  font-size:22px;
+  font-weight:bold;
+  display:flex;justify-content:space-between;
+  text-shadow:0 1px 2px rgba(0,0,0,0.7);
+}
+.top-bar button{
+  background:#5bb5c0; border:none; color:#fff; padding:6px 18px; border-radius:20px; cursor:pointer;
+}
+.center-title{
+  text-align:center; margin-top:18px; color:#fff;
+  text-shadow:0 2px 4px rgba(0,0,0,0.8);
+}
+.center-title h2{font-size:26px; background:rgba(255,255,255,0.18); display:inline-block; padding:6px 18px; border-radius:8px}
+.center-title p{margin-top:8px; background:rgba(255,255,255,0.18); display:inline-block; padding:4px 12px; border-radius:6px; font-size:16px}
+#pinned{position:sticky; top:0; background:rgba(255,193,7,0.92); padding:8px 12px; font-size:13px; display:none; z-index:5; font-family:system-ui}
+.chat-area{
+  flex:1; overflow-y:auto; padding:20px 0 80px 0; position:relative;
+}
+.msg-block{margin:18px 0; position:relative}
+.name{color:#fff; font-size:17px; padding:0 6px; text-shadow:0 1px 3px #000}
+.name.right{text-align:right}
+.bubble{
+  background:rgba(255,255,255,0.26);
+  backdrop-filter:blur(3px);
+  color:#e9e9e9;
+  padding:8px 14px;
+  border-radius:12px;
+  display:inline-block;
+  max-width:82%;
+  font-size:19px;
+  margin:4px 6px;
+  cursor:pointer;
+  word-break:break-word;
+  font-family:system-ui;
+}
+.bubble.right{margin-left:auto; display:block; margin-right:6px}
+.bubble img, .bubble video{max-width:100%; border-radius:8px; display:block; margin-bottom:5px}
+.bubble.me{background:rgba(0,150,136,0.48)}
+#typing{position:absolute; right:8px; bottom:85px; color:#ddd; text-align:right; font-size:16px; text-shadow:0 1px 2px #000}
+#typing b{display:block}
+#ctx{
+  position:fixed; background:#202c33; color:#fff; border-radius:10px; padding:6px 0; display:none; z-index:99; min-width:180px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.5); font-family:system-ui;
+}
+#ctx button{display:block; width:100%; text-align:left; background:none; border:none; color:#fff; padding:10px 14px; cursor:pointer; font-size:14px}
+#ctx button:hover{background:#2a3942}
+.bottom{
+  background:rgba(32,44,51,0.95);
+  padding:8px;
+  display:flex; flex-direction:column; gap:6px;
+  position:fixed; bottom:0; left:0; right:0;
+}
+.input-row{display:flex; align-items:flex-end; gap:8px}
+.icon-btn{width:38px;height:38px; background:#2a3942; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#8696a0; font-size:20px; border:none}
+.input-wrap{flex:1; background:#2a3942; border-radius:22px; display:flex; align-items:center; padding:6px 12px}
+.input-wrap textarea{flex:1; background:transparent; border:none; color:#fff; outline:none; resize:none; font-size:15px; max-height:80px; font-family:system-ui}
+.send-btn{width:46px;height:46px; background:#00a884; border-radius:50%; border:none; color:#fff; font-size:20px; cursor:pointer}
+.emoji-panel{display:none; background:#202c33; padding:10px; grid-template-columns:repeat(8,1fr); gap:6px; max-height:140px; overflow-y:auto}
+.emoji-panel.open{display:grid}
+.emoji{font-size:22px; cursor:pointer; text-align:center; padding:4px}
+.file-panel{display:none; background:#202c33; padding:10px; gap:10px; font-family:system-ui}
+.file-panel.open{display:flex}
+.file-panel label{background:#2a3942; padding:10px 14px; border-radius:20px; color:#fff; cursor:pointer; font-size:13px}
+
+</style>
+</head>
+<body>
+
+<div class="page" id="page">
+<div class="top-bar"><span>LFentregadora.Lda</span><button onclick="history.back()">Voltar</button></div>
+<div class="center-title"><h2>Grupos de xitique</h2><p style="margin-top:4px;font-size:14px">Grupo de eletrodomésticos</p></div>
+<div id="pinned" style="display:none">📌 <span id="pinnedText"></span> <button onclick="unpin()" style="float:right;background:none;border:none;font-weight:bold">✕</button></div>
+
+<div class="chat-area" id="chat">
+<div class="msg-block"><div class="name">Maria dos santos:</div><div class="bubble" onclick="openCtx(event,this)">Bom dia irmas em cristo, como estao?</div></div>
+<div class="msg-block"><div class="name right">Antonia:</div><div class="bubble right" onclick="openCtx(event,this)">Bom dia irma, eu tambem estou bem na mesma graça, que tal esse mes fazermos de gileiras?</div></div>
+<div class="msg-block"><div class="name">Joana:</div><div class="bubble" onclick="openCtx(event,this)">Bom dia, eu tambem concordo, estou a precisar de uma nova</div></div>
+</div>
+
+<div id="typing" style="padding:6px 12px;font-size:12px"><b>Mariana Jose</b> Escrevendo.......</div>
+
+<div id="ctx">
+<button onclick="copyMsg()">📋 Copiar</button>
+<button onclick="editMsg()">✏️ Editar</button>
+<button onclick="forwardMsg()">↗️ Reencaminhar</button>
+<button onclick="resendMsg()">🔁 Reenviar</button>
+<button onclick="pinMsg()">📌 Fixar / Afixar</button>
+<button onclick="saveMsg()">💾 Guardar</button>
+<button onclick="deleteMsg()" style="color:#e03">🗑️ Apagar</button>
+</div>
+
+<div class="emoji-panel" id="emojiPanel"></div>
+<div class="file-panel" id="filePanel">
+<label>📷 Fotos e Vídeos<input type="file" id="fotoInput" accept="image/*,video/*" hidden multiple></label>
+<label>📄 Documentos<input type="file" id="docInput" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.zip" hidden multiple></label>
+<button onclick="openContact()">👤 Contactos</button>
+<button onclick="openCamera()">📸 Usar Câmara</button>
+</div>
+
+<div class="bottom"><div class="input-row">
+<button class="icon-btn" id="emojiBtn">😊</button>
+<button class="icon-btn" id="attachBtn">📎</button>
+<div class="input-wrap"><textarea id="msgInput" rows="1" placeholder="Escreva uma mensagem"></textarea></div>
+<button class="send-btn" id="sendBtn">➤</button>
+</div></div>
+</div>
+
+<div id="contactModal"><div class="modalBox">
+<h3>Enviar Contacto</h3>
+<input id="cNome" placeholder="Nome">
+<input id="cNumero" placeholder="Número 84...">
+<div style="display:flex;gap:8px;margin-top:12px"><button onclick="closeContact()" style="flex:1;padding:10px;background:#eee;border:none;border-radius:8px">Cancelar</button><button onclick="sendContact()" style="flex:1;padding:10px;background:#1f7dd8;color:#fff;border:none;border-radius:8px">Enviar</button></div>
+</div></div>
+<input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+
+<script>
+let currentBubble=null
+const chat=document.getElementById('chat'), input=document.getElementById('msgInput'), ctx=document.getElementById('ctx'), emojiPanel=document.getElementById('emojiPanel'), filePanel=document.getElementById('filePanel')
+const emojis=["😀","😂","❤️","🔥","🙏","😍","😅","😎","👍","👏","✅","📦","🚚","💰","✨","🥰"]
+emojiPanel.innerHTML=emojis.map(e=>`<div class=emoji>${e}</div>`).join('')
+document.querySelectorAll('.emoji').forEach(el=>el.onclick=()=>{input.value+=el.textContent; input.focus()})
+document.getElementById('emojiBtn').onclick=()=>{emojiPanel.classList.toggle('open'); filePanel.classList.remove('open')}
+document.getElementById('attachBtn').onclick=()=>{filePanel.classList.toggle('open'); emojiPanel.classList.remove('open')}
+
+function openCtx(e,b){e.stopPropagation(); currentBubble=b; ctx.style.display='block'; ctx.style.left=Math.min(e.clientX, innerWidth-210)+'px'; ctx.style.top=Math.max(10, e.clientY-210)+'px'}
+document.addEventListener('click',()=>ctx.style.display='none')
+
+function addMessage(html,type='',url=''){
+  let block=document.createElement('div')
+  block.className='msg-block'
+  block.style.display='flex'; block.style.flexDirection='column'; block.style.alignItems='flex-start'; block.style.margin='8px 0'
+  // se for você, alinha à direita
+  if(html.includes('Você:')||type) block.style.alignItems='flex-end'
+  block.innerHTML=`<div class="name ${type?'right':''}">${type?'Você:':'Grupo'}</div><div class="bubble ${type?'right me':''}" onclick="openCtx(event,this)" data-type="${type}" data-url="${url}">${html}</div>`
+  chat.appendChild(block); chat.scrollTop=chat.scrollHeight
+}
+
+function copyMsg(){if(currentBubble){navigator.clipboard.writeText(currentBubble.innerText); alert('Copiado ✓')}ctx.style.display='none'}
+function deleteMsg(){if(currentBubble)currentBubble.parentElement.remove();ctx.style.display='none'}
+function pinMsg(){if(currentBubble){document.getElementById('pinned').style.display='block';document.getElementById('pinnedText').textContent=currentBubble.innerText.slice(0,60)}ctx.style.display='none'}
+function unpin(){document.getElementById('pinned').style.display='none'}
+function forwardMsg(){let p=prompt('Reencaminhar para quem?'); if(p&&currentBubble)addMessage(`↗️ Para ${p}<br>`+currentBubble.innerHTML); ctx.style.display='none'}
+function resendMsg(){if(currentBubble)addMessage(currentBubble.innerHTML, currentBubble.dataset.type, currentBubble.dataset.url); ctx.style.display='none'}
+function editMsg(){if(currentBubble){let n=prompt('Editar:',currentBubble.innerText); if(n!==null)currentBubble.innerHTML=n}ctx.style.display='none'}
+function saveMsg(){if(!currentBubble)return; let url=currentBubble.dataset.url; if(url){let a=document.createElement('a');a.href=url;a.download='xitique_'+Date.now();a.click()}else{let b=new Blob([currentBubble.innerText],{type:'text/plain'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mensagem.txt';a.click()}ctx.style.display='none'}
+
+document.getElementById('sendBtn').onclick=()=>{if(!input.value.trim())return; addMessage(input.value, 'text'); input.value=''; input.style.height='auto'}
+input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault(); document.getElementById('sendBtn').click()}})
+input.addEventListener('input',()=>{input.style.height='auto'; input.style.height=input.scrollHeight+'px'})
+
+document.getElementById('fotoInput').onchange=e=>{
+  Array.from(e.target.files).forEach(f=>{
+    let u=URL.createObjectURL(f)
+    addMessage((f.type.startsWith('video')?`<video src="${u}" controls></video>`:`<img src="${u}">`)+`<br>${f.name}`, f.type, u)
+  })
+  filePanel.classList.remove('open'); e.target.value=''
+}
+document.getElementById('docInput').onchange=e=>{
+  Array.from(e.target.files).forEach(f=>{
+    let u=URL.createObjectURL(f)
+    addMessage(`📄 <a href="${u}" download="${f.name}">${f.name}</a> (${(f.size/1024).toFixed(0)}KB)`, 'doc', u)
+  })
+  filePanel.classList.remove('open'); e.target.value=''
+}
+
+function openContact(){filePanel.classList.remove('open'); document.getElementById('contactModal').classList.add('open')}
+function closeContact(){document.getElementById('contactModal').classList.remove('open')}
+function sendContact(){let n=document.getElementById('cNome').value, num=document.getElementById('cNumero').value; if(!n||!num)return alert('Preencha'); addMessage(`👤 <b>${n}</b><br>📞 ${num}<br><a href="tel:${num}">Ligar</a> | <a href="https://wa.me/${num}">WhatsApp</a>`,'contact'); closeContact(); cNome.value='';cNumero.value=''}
+function openCamera(){document.getElementById('cameraInput').click()}
+document.getElementById('cameraInput').onchange=e=>{
+  let f=e.target.files[0]; if(f){let u=URL.createObjectURL(f); addMessage(`<img src="${u}"><br>📸 Câmara`, 'image', u)}
+  filePanel.classList.remove('open'); e.target.value=''
+}
+</script>
+</body>
+</html>

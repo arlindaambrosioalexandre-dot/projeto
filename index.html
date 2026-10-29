@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LFentregadora</title>
+    <link rel="stylesheet" href="Capa.css">
+    <link rel="stylesheet" href="Indice.css">
+</head>
+<style>@keyframes lfPisca{0%,100%{opacity:0.3}50%{opacity:1}}
+  *{margin:0; padding:0; box-sizing:border-box}
+body{
+background-image: url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg);
+background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+}
+
+.img{
+    
+    align-items: center;
+    align-content: center;
+    margin-left: 500px;
+}
+
+#foto{
+
+width: 90%;
+height: 70%;
+object-fit:contain;
+  object-position:center 35%;
+  object-position: center top; /* mostra só de cima até o meio */
+  transform: scale(1.3) translateY(-15px); /* dá ZOOM e sobe, o CANVA fica pra fora */
+} 
+
+#botao{
+
+ text-align: center; 
+ padding-bottom: 50px;
+   
+   
+}
+#botao a{
+ text-decoration: none;
+ margin-top: -200px;
+}
+.footer-loader{
+  position:absolute;
+  bottom:25px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  margin-left: 700px;
+}
+.spinner{
+  width:32px;
+  height:32px;
+  border:3px solid rgba(255,255,255,0.3);
+  border-top:3px solid white;
+  border-radius:50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes lfPisca{0%,100%{opacity:0.3}50%{opacity:1}}
+.txt{color:white; font-family:Arial; font-size:13px; animation:lfPisca 1.5s infinite}
+</style>
+<body>
+    <div class="img">
+    <img src="Design_sem_nome__4_-removebg-preview.png" alt=" " id="foto">
+    </div>
+    <div class="footer-loader">
+  <div class="spinner"></div>
+   <span class="txt">Carregando...</span>
+</div>
+
+
+<script>
+setTimeout(()=>{
+  window.location.href = "Segunda pagina.html";
+}, 3000);
+
+// Se clicar no logo também vai
+document.querySelector('.img').addEventListener('click', ()=>{
+  window.location.href = "Segunda pagina.html";
+});
+</script>
+</body>
+</html>

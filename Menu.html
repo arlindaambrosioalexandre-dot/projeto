@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-mz">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lfentregadora.Lda - Menu</title>
+  
+  <link rel="stylesheet" href="Indice.css" />
+  
+</head>
+<style>
+  body{
+    background-image:url(Imagens/ai-generated-blurred-background-interior-of-a-large-modern-warehouse-photo.jpg);
+            background-position: center;
+background-size: cover;
+width: 100%;
+height: 100%;
+background-repeat: no-repeat;
+  }
+#botao{
+  border: 2px solid rgba(0, 157, 255, 0.845);
+  margin-left: 1100px;
+  border-radius: 20px;
+  width: 100px;
+  height: 30px;
+  background-color: rgb(127, 255, 244);
+ margin-block: 30px;
+}
+h1{
+  text-align: justify;
+}
+nav{
+  display: flex;
+  background-color:rgba(235, 239, 239, 0.671);
+}
+#botao a{
+   
+ text-decoration: none;
+}
+
+*{margin:0; padding:0; box-sizing:border-box; font-family:Georgia, serif}
+
+body::before{content:""; position:absolute; inset:0; background:rgba(0,0,0,0.2)}
+.topo{position:relative; z-index:2; display:flex; align-items:center; padding:18px}
+.btn-voltar{width:52px; height:52px; background:#1f7dd8; border:none; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer}
+.btn-voltar svg{width:30px; fill:white}
+.tit{flex:1; text-align:center; color:white; text-shadow:0 2px 6px #000}
+.tit h3{font-size:17px} .tit h1{font-size:26px; margin-top:4px}
+
+.area{position:relative; z-index:2; max-width:700px; margin:10px auto; padding:10px;  display:grid;grid-template-columns: 300px 300px 300px; grid-template-rows: 250px 250px 250px; gap:16px; justify-content:center; margin-top: -600px;}
+
+.card{
+  background:rgba(255,255,255,0.38); backdrop-filter:blur(5px);
+  border:1.5px solid rgba(120,255,210,0.7); border-radius:18px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:white; text-shadow:0 1px 4px rgba(0,0,0,0.7); cursor:pointer; text-align:center; padding:12px
+}
+.card b{font-size:14px; margin-top:6px; line-height:1.15}
+
+/* TAMANHOS DIFERENTES IGUAL FOTO */
+.c1{width:255px; height:150px} /* Grupos */
+.c2{width:280px; height:120px} /* Guardados - largo */
+.c3{width:255px; height:220px} /* Pagamentos - quadrado */
+.c4{width:175px; height:160px} /* Notificações - alto */
+.c5{width:250px; height:170px} /* Perfil - alto estreito */
+.c6{width:190px; height:200px} /* Calendário */
+.c7{width:135px; height:175px} /* Comentários - estreito alto */
+.c8{width:270px; height:125px} /* Conversas - largo */
+.c9{width:385px; height:135px} /* Línguas */
+.c10{width:180px; height:110px} /* Config */
+
+.icon{font-size:42px; filter:drop-shadow(0 2px 2px rgba(0,0,0,0.5))}
+
+
+</style>
+<body>
+<nav>
+<h1>LFentregadora.Lda</h1>
+<button id="botao"><a href="pagina principal.html">Voltar</a></button>
+</nav>
+  <div class="lista-frames">
+    <section class="frame tela-menu">
+      <h2 class="titulo-pagina">Menu</h2>
+  </div>
+<div class="area">
+  <div class="card c1" onclick="location.href='xitique.html'"><span class="icon" style="color:#7a3dff">👥</span><b>Grupos de xitique</b></div>
+  <div class="card c2" onclick="location.href='3Index.html'"><span class="icon" style="color:#ff7a00">🔖</span><b>Guardados</b></div>
+  <div class="card c3" onclick="location.href='pagamentos.html'"><span class="icon" style="color:#00c853">💳</span><b>Pagamentos</b></div>
+  
+  <div class="card c4" onclick="location.href='Notificacoes das promocoes.html'"><span class="icon" style="color:#0066ff">🔔</span><b>Notificações das promoções</b></div>
+  <div class="card c5" onclick="location.href='Perfil.html'"><span class="icon" style="color:#009688">👤</span><b>Perfil do cliente</b></div>
+  <div class="card c6" onclick="location.href='Calendario das promocoes.html'"><span class="icon" style="color:#ff2d7d">📅</span><b>Calendário de promoções</b></div>
+
+  <div class="card c7" onclick="location.href='4Index.html'"><span class="icon" style="color:#ffbe00">❓</span><b>Comentários e ajuda</b></div>
+  <div class="card c8" onclick="location.href='Conversas.html'"><span class="icon" style="color:#0a5cff">💬</span><b>Conversas</b></div>
+  <div class="card c9" onclick="location.href='Linguas.html'"><span class="icon" style="color:#ff3b30">🌐</span><b>Línguas</b></div>
+</div>
+
+</body>
+</html>
